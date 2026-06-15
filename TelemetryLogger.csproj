@@ -1,0 +1,103 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  
+<PropertyGroup>
+  <TargetFramework>net48</TargetFramework>
+  <LangVersion>Latest</LangVersion>
+  <AssemblyName>TelemetryLogger</AssemblyName>
+</PropertyGroup>
+
+  <ItemGroup>
+    <!-- BepInEx Core -->
+    <Reference Include="0Harmony">
+      <HintPath>../../../../BepInEx/core/0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony20">
+      <HintPath>../../../../BepInEx/core/0Harmony20.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>../../../../BepInEx/core/BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Harmony">
+      <HintPath>../../../../BepInEx/core/BepInEx.Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Preloader">
+      <HintPath>../../../../BepInEx/core/BepInEx.Preloader.dll</HintPath>
+    </Reference>
+    <Reference Include="HarmonyXInterop">
+      <HintPath>../../../../BepInEx/core/HarmonyXInterop.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>../../../../BepInEx/core/Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>../../../../BepInEx/core/Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>../../../../BepInEx/core/Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>../../../../BepInEx/core/Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod">
+      <HintPath>../../../../BepInEx/core/MonoMod.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>../../../../BepInEx/core/MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>../../../../BepInEx/core/MonoMod.Utils.dll</HintPath>
+    </Reference>
+    
+    <!-- BepInEx Utils -->
+    <Reference Include="PUBLIC-Assembly-CSharp">
+      <HintPath>../../../../BepInEx/utils/PUBLIC-Assembly-CSharp.dll</HintPath>
+    </Reference>
+
+    <!-- BepInEx Plugins -->
+    <Reference Include="HOOKS-Assembly-CSharp">
+      <HintPath>../../../../BepInEx/plugins/HOOKS-Assembly-CSharp.dll</HintPath>
+    </Reference>
+
+    <!-- Rain World Managed DLLs -->
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>../../../../RainWorld_Data/Managed/Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>../../../../RainWorld_Data/Managed/Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>../../../../RainWorld_Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>../../../../RainWorld_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>../../../../RainWorld_Data/Managed/UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>../../../../RainWorld_Data/Managed/UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>../../../../RainWorld_Data/Managed/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="GoKit">
+      <HintPath>../../../../RainWorld_Data/Managed/GoKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Rewired_Core">
+      <HintPath>../../../../RainWorld_Data/Managed/Rewired_Core.dll</HintPath>
+    </Reference>
+    
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Copy
+            SourceFiles="$(OutputPath)$(AssemblyName).dll"
+            DestinationFolder="$(ProjectDir)plugins\"
+    />
+  </Target>
+  
+</Project>

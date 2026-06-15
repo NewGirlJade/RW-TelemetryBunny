@@ -1,0 +1,10 @@
+{
+  "id": "NewGirlJade.telemetrylogger",
+  "name": "telemetrylogger",
+  "version": "1.0.0",
+  "authors": "NewGirlJade",
+  "description": "logs player data",
+  "requirements": [],
+  "requirements_names": [],
+  "checksum_override_version": true
+}
