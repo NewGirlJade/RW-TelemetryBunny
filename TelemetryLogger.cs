@@ -20,7 +20,9 @@ public class TelemetryLogger : BaseUnityPlugin
     public const string PLUGIN_GUID = "NewGirlJade.TelemetryLogger";
     public const string PLUGIN_NAME = "TelemetryLogger";
     private StreamWriter telemetryfile;
-
+    private bool special_pressed = false;
+    private bool should_log = false;
+    
     void Awake()
     {
         string logPath = Path.Combine(Paths.GameRootPath, "telemetry.log.jsonl");
@@ -67,7 +69,20 @@ public class TelemetryLogger : BaseUnityPlugin
         Player.InputPackage input = self.input[0];
         if (input.spec)
         {
-            var connections = new object[self.bodyChunkConnections.Length];
+            this.special_pressed = true;
+        }
+        else
+        {
+            if (this.special_pressed){
+                this.special_pressed = false;
+                this.should_log = !this.should_log;
+                Logger.LogDebug("Toggled logging");
+                telemetryfile.WriteLine("Toggled logging");
+            }
+        }
+
+        if (this.should_log)    
+        { var connections = new object[self.bodyChunkConnections.Length];
             for (int i = 0; i < self.bodyChunkConnections.Length; i++)
             {var conn = self.bodyChunkConnections[i];
                 connections[i] = new
@@ -116,7 +131,7 @@ public class TelemetryLogger : BaseUnityPlugin
                 body_connections = connections,
             };
         telemetryfile.WriteLine(JsonConvert.SerializeObject(frameData)); 
-        } 
+        }
     }
 }
      

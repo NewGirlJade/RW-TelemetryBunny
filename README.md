@@ -1,6 +1,8 @@
 ## Rain World TelemetryLogger Mod
 
-Mod for the game Rain World which runs quietly as the game is played. Logs player data while the "spec" button (default y) is held. 
+Mod for the game Rain World which runs quietly as the game is played. 
+
+Press and release the "spec" button (default y) to toggle logging.
 
 Writes to telemetry.log.jsonl in the rainworld game folder
 
